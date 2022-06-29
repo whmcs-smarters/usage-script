@@ -1,9 +1,9 @@
 #! /bin/bash
-CPU=$(top -bn1 | grep load | awk '{printf "%.2f%%\t\t\n", $(NF-2)}')
+CPU=$(top -bn1 | grep load | awk '{printf "%.2f%%", $(NF-2)}')
 echo -e '\E[32m'"CPU Load Average :" $CPU
-MEMORY=$(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
+MEMORY=$(free -m | awk 'NR==2{printf "%.2f%%", $3*100/$2 }')
 echo -e '\E[32m'"Memory usage :" $MEMORY
-DISK=$(df -h | awk '$NF=="/"{printf "%s\t\t", $5}')
+DISK=$(df -h | awk '$NF=="/"{printf "%s", $5}')
 echo -e '\E[32m'"Disk Usage :" $DISK
 tecuptime=$(uptime | awk '{print $3,$4}' | cut -f1 -d,)
 echo -e '\E[32m'"System Uptime Days/(HH:MM) :" $tecuptime
