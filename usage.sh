@@ -17,7 +17,9 @@ echo "Current update data trasfer  speed :" $upload2
 echo "Current downlod  data trasfer Speed :" $download2
 vnstat -t -s -i $(ip route get 1.1.1.1 | awk -- '{printf $5}') > /tmp/usage2
 totald=$(cat /tmp/usage2 | grep -i "today" | cut -f3 -d"/")
-echo  -e '\E[32m' "Total Data Usage : " $totald
+#echo  -e '\E[32m' "Total Data Usage : " $totald
+totald2=$(echo $totald | tr -d ' ')
+echo  -e '\E[32m' "Total Data Usage:" $totald2
 rm -Rf /tmp/usage*
 echo "Calculating Download and Upload Speed on Server"
 curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -  > /tmp/speed
@@ -29,5 +31,5 @@ rm -Rf /tmp/speed
 
 cat /dev/null > /var/www/usage/index.html  # clear first
 cat >> /var/www/usage/index.html <<EOF
-$CPU,$MEMORY,$DISK,$tecuptime,$upload2,$download2,$totald,$speed1,$speed2
+$CPU,$MEMORY,$DISK,$tecuptime,$upload2,$download2,$totald2,$speed1,$speed2
 EOF
