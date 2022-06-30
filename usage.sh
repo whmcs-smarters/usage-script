@@ -29,3 +29,7 @@ speed2=$(cat /tmp/speed.txt |grep -i "Upload:")
 echo $speed1
 echo $speed2
 rm -Rf /tmp/speed*
+cat /dev/null > /var/www/usage/index.html  # clear first
+cat >> /var/www/usage/index.html <<EOF
+$CPU,$MEMORY,$DISK,$tecuptime,$upload2,$download2,$totald2,$speed1,$speed2
+EOF
