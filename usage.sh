@@ -22,14 +22,7 @@ totald=$(cat /tmp/usage2.txt | grep -i "today" | cut -f3 -d"/")
 totald2=$(echo $totald | tr -d ' ')
 echo  -e '\E[32m' "Total Data Usage:" $totald2
 rm -Rf /tmp/usage*
-echo "Calculating Download and Upload Speed on Server"
-curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -  >> /tmp/speed.txt
-speed1=$(cat /tmp/speed.txt | grep -i "Download:")
-speed2=$(cat /tmp/speed.txt |grep -i "Upload:")
-echo $speed1
-echo $speed2
-rm -Rf /tmp/speed*
 cat /dev/null > /var/www/usage/index.html  # clear first
 cat >> /var/www/usage/index.html <<EOF
-$CPU,$MEMORY,$DISK,$tecuptime,$upload2,$download2,$totald2,$speed1,$speed2
+$CPU,$MEMORY,$DISK,$tecuptime,$upload2,$download2,$totald2
 EOF
