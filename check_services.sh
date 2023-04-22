@@ -15,7 +15,7 @@ else
 fi
 
 # Check if the IKEv2 service is running
-if systemctl is-active strongswan.service > /dev/null 2>&1; then
+if ipsec status > /dev/null 2>&1; then
   echo "online" > $IKEV2_STATUS_FILE
   IKEV2_STATUS = "online"
 else
