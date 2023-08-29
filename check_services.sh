@@ -17,8 +17,8 @@ fi
 # Check if the IKEv2 service is running
 if ipsec status > /dev/null 2>&1; then
   echo "online" > $IKEV2_STATUS_FILE
-  IKEV2_STATUS = "online"
+  IKEV2_STATUS="online"
 else
   echo "offline" > $IKEV2_STATUS_FILE
-  IKEV2_STATUS = "offline"
+  IKEV2_STATUS="offline"
 fi
